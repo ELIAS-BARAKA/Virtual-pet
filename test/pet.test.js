@@ -27,3 +27,24 @@ describe("growUp", () => {
     expect(pet.fitness).toBe(7);
   });
 });
+
+describe("walk", () => {
+    it("increase fitness", () => {
+        const pet = new Pet("Fido");
+        pet.walk();
+        expect(pet.fitness).toBe(10);
+        pet.fitness = 4;
+        pet.walk();
+        expect(pet.fitness).toBe(8);
+    });
+});
+describe("feed", () => {
+    it("decrease hunger", () =>{
+        const pet = new Pet("Fido");
+        pet.feed();
+        expect(pet.hunger).toBe(0);
+        pet.hunger = 10;
+        pet.feed();
+        expect(pet.hunger).toBe(7);
+    });
+});
