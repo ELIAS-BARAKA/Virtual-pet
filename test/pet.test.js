@@ -26,6 +26,11 @@ describe("growUp", () => {
     pet.growUp();
     expect(pet.fitness).toBe(7);
   });
+  it("throws an error if the pet is not alive", () => {
+    const pet = new Pet("Fido");
+    pet.age = 30;
+    expect(() => pet.checkUp()).toThrow("Your pet is no longer alive :(");
+  });
 });
 
 describe("walk", () => {
@@ -39,6 +44,10 @@ describe("walk", () => {
         pet.walk();
         expect(pet.fitness).toBe(8);
     });
+    it("throws an error if the pet is not alive", () => {
+      pet.age = 30;
+      expect(() => pet.checkUp()).toThrow("Your pet is no longer alive :(");
+    });
 });
 describe("feed", () => {
     const pet = new Pet("Fido");
@@ -50,6 +59,10 @@ describe("feed", () => {
         pet.hunger = 10;
         pet.feed();
         expect(pet.hunger).toBe(7);
+    });
+    it("throws an error if the pet is not alive", () => {
+      pet.age = 30;
+      expect(() => pet.feed()).toThrow("Your pet is no longer alive :(");
     });
 });
 
@@ -73,23 +86,28 @@ describe("checkUp", () => {
         pet.hunger = 8;
         expect(pet.checkUp()).toBe("I am hungry AND I need a walk");
     });
+    it("throws an error if the pet is not alive", () => {
+      pet.age = 30;
+      expect(() => pet.checkUp()).toThrow("Your pet is no longer alive :(");
+    });
 });
 
 describe("is alive", () => {
     const pet = new Pet("Fido");
     it("check if the pet is alive when its supose to be", () => {
-        expect(pet.isAlive()).toBe(true);
+        expect(pet.isAlive).toBe(true);
     });
     it("check if the pet is alive according to it's fitness", () => {
         pet.fitness = 0;
-        expect(pet.isAlive()).toBe(false)
+        expect(pet.isAlive).toBe(false)
     });
     it("check if the pet is alive according to it's hunger", () => {
+        pet.fitness = 10;
         pet.hunger = 10;
-      expect(pet.isAlive()).toBe(false);
+      expect(pet.isAlive).toBe(false);
     });
     it("check if the pet is alive according to it's age", () => {
         pet.age = 30;
-      expect(pet.isAlive()).toBe(false);
+      expect(pet.isAlive).toBe(false);
     });
 });
