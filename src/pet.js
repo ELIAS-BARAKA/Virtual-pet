@@ -3,6 +3,7 @@ function Pet(name) {
   this.hunger = 0;
   this.fitness = 10;
   this.age = 0;
+  this.children = new Array;
 }
 
 Pet.prototype = {
@@ -69,7 +70,7 @@ Pet.prototype = {
   },
 
   adoptChild(child) {
-    this.children = new Array(child);
+    this.children.push(child);
   },
 
 };
